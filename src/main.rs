@@ -1,3 +1,6 @@
+use litetrace_rs::{options, run};
+
 fn main() {
-    println!("Hello, world!");
+    let opts = options::parse();
+    run(opts);
 }
