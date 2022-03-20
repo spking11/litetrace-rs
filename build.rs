@@ -1,16 +1,21 @@
 extern crate bindgen;
+extern crate pkg_config;
 
 use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    println!("cargo:rustc-link-lib=tracefs");
     println!("cargo:rerun-if-changed=wrapper.h");
 
+    let library = pkg_config::probe_library("libtracefs").unwrap();
     let bindings = bindgen::Builder::default()
+        .clang_args(
+            library
+                .include_paths
+                .iter()
+                .map(|path| format!("-I{}", path.to_string_lossy())),
+        )
         .header("wrapper.h")
-        .clang_arg("-I/usr/include/tracefs")
-        .clang_arg("-I/usr/include/traceevent")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate bindings");
