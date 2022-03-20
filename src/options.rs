@@ -1,3 +1,4 @@
+use std::fmt;
 use clap::{Args, Parser, Subcommand};
 
 #[derive(Parser)]
@@ -12,6 +13,7 @@ pub fn parse() -> Options {
     Options::parse()
 }
 
+#[derive(Debug)]
 #[derive(Subcommand)]
 pub enum Command {
     /// start tracing without recording into a file
@@ -24,15 +26,27 @@ pub enum Command {
     List(List),
 }
 
+impl fmt::Display for Command {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+        // or, alternatively:
+        // fmt::Debug::fmt(self, f)
+    }
+}
+
+#[derive(Debug)]
 #[derive(Args)]
 pub struct Start {}
 
+#[derive(Debug)]
 #[derive(Args)]
 pub struct Stop {}
 
+#[derive(Debug)]
 #[derive(Args)]
 pub struct Show {}
 
+#[derive(Debug)]
 #[derive(Args)]
 pub struct List {
     /// -e list available events

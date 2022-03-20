@@ -6,8 +6,8 @@ use std::path::PathBuf;
 
 fn main() {
     println!("cargo:rerun-if-changed=wrapper.h");
-
-    let library = pkg_config::probe_library("libtracefs").unwrap();
+ 
+    let library = pkg_config::Config::new().probe("libtracefs").unwrap();
     let bindings = bindgen::Builder::default()
         .clang_args(
             library
