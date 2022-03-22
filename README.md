@@ -20,7 +20,7 @@ sudo pacman -S clang pkg-config libtracefs libtraceevent
 
 ## Plan
 
-- 支持打开function跟踪和function过滤，动态开启和关闭跟踪
+- 支持打开function跟踪和function过滤，动态开启和~~关闭~~跟踪
 - ~~支持查看当前配置状态：~~
     - ~~跟踪类型  current_tracer~~
     - ~~开关状态  tracing_on~~

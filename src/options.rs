@@ -38,9 +38,20 @@ impl fmt::Display for Command {
 #[derive(Args)]
 pub struct Start {}
 
+/// Stops the tracer from recording more data.
 #[derive(Debug)]
 #[derive(Args)]
-pub struct Stop {}
+pub struct Stop {
+    // /// -B stop a given buffer (more than one may be specified)
+    // #[clap(short='B')]
+    // pub buffer: String,
+    // ///  -a stop all buffers (except top one)
+    // #[clap(short='f')]
+    // pub all: bool,
+    /// -t stop the top level buffer (useful with -B or -a)
+    #[clap(short)]
+    pub top: bool,
+}
 
 /// trace-cmd show [-p|-s][-c cpu][-B buf][options]
 /// Basically, this is a cat of the trace file.
