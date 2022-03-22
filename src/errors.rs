@@ -5,6 +5,8 @@ use thiserror::Error;
 pub enum Error {
     #[error("unsupprted cmd/arg now {name:?}")]
     Unsupprted { name: String },
+    #[error("Arg error: ")]
+    ArgError{ msg: String},
     #[error("null ptr returned by {from:?}, args: {args:?}")]
     Nullptr { from: String, args: String },
     #[error(transparent)]

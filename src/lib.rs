@@ -1,17 +1,21 @@
 mod commands;
+pub mod errors;
 pub mod options;
 pub mod tracefs;
 pub mod tracefs_sys;
-pub mod errors;
 
+use commands::{trace_list, trace_show, trace_start};
 use errors::{Error, Result};
-use commands::{trace_list};
 use options::{Command, Options};
 
-pub fn run(options: Options) ->Result<()> {
-    match options.cmd {
+pub fn run(opts: Options) -> Result<()> {
+    match opts.cmd {
         Command::List(arg) => trace_list(arg),
-        _ => Err(Error::Unsupprted { name: options.cmd.to_string() }),
+        Command::Start(arg) => trace_start(arg),
+        Command::Show(arg) => trace_show(arg),
+        _ => Err(Error::Unsupprted {
+            name: opts.cmd.to_string(),
+        }),
     }
 }
 

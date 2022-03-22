@@ -42,16 +42,48 @@ pub struct Start {}
 #[derive(Args)]
 pub struct Stop {}
 
+/// trace-cmd show [-p|-s][-c cpu][-B buf][options]
+/// Basically, this is a cat of the trace file.
 #[derive(Debug)]
 #[derive(Args)]
-pub struct Show {}
+pub struct Show {
+    /// -f display the file path that is being dumped
+    #[clap(short='f')]
+    pub show_name: bool,
+    /// -p read the trace_pipe file instead
+    #[clap(short='p')]
+    pub pipe: bool,
+    /// -s read the snapshot file instance
+    #[clap(short='s')]
+    pub snap: bool,
+    #[clap(long)]
+    pub tracing_on: bool,
+    #[clap(long)]
+    pub current_tracer: bool,
+    #[clap(long)]
+    pub buffer_size_kb:bool,
+    #[clap(long)]
+    pub buffer_total_size_kb:bool,
+    #[clap(long)]
+    pub set_ftrace_filter: bool,
+    #[clap(long)]
+    pub set_ftrace_notrace: bool,
+    #[clap(long)]
+    pub set_ftrace_pid: bool,
+    #[clap(long)]
+    pub set_graph_function: bool,
+    #[clap(long)]
+    pub set_graph_notrace: bool,
+    #[clap(long)]
+    pub tracing_cpumask: bool,
+}
 
 #[derive(Debug)]
 #[derive(Args)]
 pub struct List {
     /// -e list available events
-    #[clap(short, long)]
-    pub events: bool,
+    // #[clap(short, long)]
+    // pub events: bool,
     /// -t list available tracers
     #[clap(short, long)]
     pub tracer: bool,

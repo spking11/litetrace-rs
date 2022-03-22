@@ -21,9 +21,9 @@ sudo pacman -S clang pkg-config libtracefs libtraceevent
 ## Plan
 
 - 支持打开function跟踪和function过滤，动态开启和关闭跟踪
-- 支持查看当前配置状态：
-    - 跟踪类型  current_tracer
-    - 开关状态  tracing_on
-    - function过滤器状态 set_ftrace_filter
-- 支持导出跟踪结果
-    - 打印trace中的跟踪内容
+- ~~支持查看当前配置状态：~~
+    - ~~跟踪类型  current_tracer~~
+    - ~~开关状态  tracing_on~~
+    - ~~function过滤器状态 set_ftrace_filter~
+- ~~支持导出跟踪结果~~
+    - ~~打印trace中的跟踪内容~~
