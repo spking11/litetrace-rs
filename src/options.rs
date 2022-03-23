@@ -24,6 +24,8 @@ pub enum Command {
     Show(Show),
     /// list the available events, plugins or options
     List(List),
+    /// clear the trace buffers
+    Clear(Clear),
 }
 
 impl fmt::Display for Command {
@@ -36,7 +38,20 @@ impl fmt::Display for Command {
 
 #[derive(Debug)]
 #[derive(Args)]
-pub struct Start {}
+pub struct Start {
+    /// -e run command with event enabled # now unsupported
+    #[clap(short)]
+    pub event: Option<bool>,
+    /// -p run command with plugin enabled
+    #[clap(short)]
+    pub plugin: Option<String>,
+    /// -l filter function name
+    #[clap(short='l')]
+    pub funcs: Vec<String>,
+    // /// --module filter module name
+    // #[clap(long)]
+    // pub module: Option<String>,
+}
 
 /// Stops the tracer from recording more data.
 #[derive(Debug)]
@@ -96,9 +111,18 @@ pub struct List {
     // #[clap(short, long)]
     // pub events: bool,
     /// -t list available tracers
-    #[clap(short, long)]
+    #[clap(short)]
     pub tracer: bool,
     /// -f [regex] list available functions to filter on
-    #[clap(short, long)]
+    #[clap(short)]
     pub funcs: bool,
+}
+
+/// clear - clear the trace buffers
+#[derive(Debug)]
+#[derive(Args)]
+pub struct Clear {
+    /// -a clear all existing buffers, including the top level one
+    #[clap(short)]
+    pub all : bool,
 }

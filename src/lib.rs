@@ -4,7 +4,7 @@ pub mod options;
 pub mod tracefs;
 pub mod tracefs_sys;
 
-use commands::{trace_list, trace_show, trace_start, trace_stop};
+use commands::{trace_list, trace_show, trace_start, trace_stop, trace_clear};
 use errors::{Error, Result};
 use options::{Command, Options};
 
@@ -14,6 +14,7 @@ pub fn run(opts: Options) -> Result<()> {
         Command::Start(arg) => trace_start(arg),
         Command::Show(arg) => trace_show(arg),
         Command::Stop(arg) => trace_stop(arg),
+        Command::Clear(arg) => trace_clear(arg),
         _ => Err(Error::Unsupprted {
             name: opts.cmd.to_string(),
         }),

@@ -5,11 +5,22 @@
 ## Dependencies
 
 ```
-# Ubuntu
+# Ubuntu 测试发现 libtracefs-dev 版本过低，还是手动安装
 sudo apt-get install llvm-dev libclang-dev clang pkg-config libtracefs-dev libtraceevent-dev -y # need hirsute/impish/jammy[universe]
 
 # Arch
 sudo pacman -S clang pkg-config libtracefs libtraceevent
+
+# manual
+git clone https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
+cd libtraceevent
+make
+sudo make install
+
+git clone https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/
+cd libtracefs
+make
+sudo make install
 ```
 
 注：在仓库安装的这俩个依赖都是动态库，静态库需要下载源码自行编译，后续考虑带源码封装成 *-sys FFI 包。
@@ -20,10 +31,10 @@ sudo pacman -S clang pkg-config libtracefs libtraceevent
 
 ## Plan
 
-- 支持打开function跟踪和function过滤，动态开启和~~关闭~~跟踪
+- ~~支持打开function跟踪和function过滤，动态开启和关闭跟踪~~
 - ~~支持查看当前配置状态：~~
     - ~~跟踪类型  current_tracer~~
     - ~~开关状态  tracing_on~~
-    - ~~function过滤器状态 set_ftrace_filter~
+    - ~~function过滤器状态 set_ftrace_filter~~
 - ~~支持导出跟踪结果~~
     - ~~打印trace中的跟踪内容~~
