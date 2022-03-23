@@ -107,7 +107,7 @@ pub struct Show {
 #[derive(Debug)]
 #[derive(Args)]
 pub struct List {
-    /// -e list available events
+    // / -e list available events
     // #[clap(short, long)]
     // pub events: bool,
     /// -t list available tracers
